@@ -23,22 +23,12 @@ class Parser {
         try {
             int time = getTime(words[0]);
             int id = getInt(words[1]);
-            std::string name = words[2];
-            if (id == 2 || id == 12) {
-                if (words.size() == 4) {
-                    std::string numberTable = words[3];
-                    return Event{time, id, {name, numberTable}};
-                } else {
-                    throw std::runtime_error(str);
-                }
-            } else {
-                return Event{time, id, {name}};
-            }
+            std::vector<std::string> body = std::vector(words.begin() + 2, words.end());
+            return Event{time, id, body};
 
         } catch (const std::runtime_error &err) {
             throw std::runtime_error(str); //Чтобы передать в main всю строку, а не подстроку с ошибкой
         }
-        throw std::runtime_error(str); // Должно быть только имя клиента, но
     }
 
 public:
@@ -57,14 +47,10 @@ public:
         }
     }
 
-    static std::vector<Event> getEvents(int N, const std::ifstream &file) {
+    static std::vector<Event> getEvents(std::ifstream &file) {
         std::vector<Event> events;
         std::string tmp;
-        for (int i = 0; i < N; ++i) {
-            std::getline(std::cin, tmp);
-            if (tmp.empty()) {
-                break;
-            }
+        while (std::getline(file, tmp)) {
             Event eventTmp = getEvent(tmp);
             events.emplace_back(eventTmp);
         }
