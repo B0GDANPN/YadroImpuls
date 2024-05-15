@@ -5,31 +5,21 @@
 #ifndef YADROIMPULS_EVENTHANDLER_H
 #define YADROIMPULS_EVENTHANDLER_H
 
-#include <unordered_map>
-#include <queue>
+#include <map>
 #include "Parser.h"
+#include <queue>
+struct Table {
+    int free{1};
+    int income{0};
+    int time{0};
+    int lastTimeArrival{0};
 
-typedef struct {
-    int income;
-    int time;
-
-} table;
-
-class EventHandler {
-public:
-    static void procces(int N, int timeOpen, int timeClose, int costHour, const std::vector<Event> &events) {
-        std::unordered_map<int, table> infoTables;
-        for (int i = 1; i <= N; ++i) {
-            infoTables[i] = table{0, 0};
-        }
-        std::cout << timeOpen << std::endl;
-        //events
-        std::cout << timeClose << std::endl;
-        for (int i = 1; i <= N; ++i) {
-            std::cout << i << ' ' << infoTables[i].income << Event::timeToStr(infoTables[i].time) << std::endl;
-        }
-    }
 };
+class EventHandler {
+    static void generateEvent(int time,int id,const std::string &error,const std::string &additional);
 
+public:
+    static void process(int N, int timeOpen, int timeClose, int costHour, const std::vector<Event> &events);
+};
 
 #endif //YADROIMPULS_EVENTHANDLER_H

@@ -40,7 +40,7 @@ int main(int argc, char *argv[]) {
             }
         } else {
             EventHandler::process(N, timeOpen, timeClose, costHour,
-                       events);
+                                  events);
         }
     }
     catch (const std::runtime_error &err) {
