@@ -1,6 +1,3 @@
-//
-// Created by bogdan on 15.05.24.
-//
 #include <fstream>
 #include "Parser.h"
 
@@ -27,6 +24,9 @@ Event Parser::getEvent(const std::string &str) {
 
 int Parser::getInt(const std::string &str) {
     try {
+        if (!std::all_of(str.begin(), str.end(), isdigit)) {// cлучай когда число затем буквы 12ADV
+            throw std::runtime_error(str);
+        }
         int res = stoi(str);
         return res;
     } catch (const std::exception &ex) {
@@ -42,6 +42,9 @@ int Parser::getTime(const std::string &stringTime) {
     try {
         int hours = std::stoi(stringTime.substr(0, colonPos));
         int minutes = std::stoi(stringTime.substr(colonPos + 1));
+        if (!(0 <= hours && hours <= 23) || !(0 <= minutes && minutes <= 59)) {
+            throw std::runtime_error(stringTime);
+        }
         return hours * 60 + minutes;
     }
     catch (const std::exception &ex) {

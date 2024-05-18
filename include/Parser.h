@@ -9,10 +9,10 @@
 #include <string>
 #include <sstream>
 
-class Parser {
+class Parser { // все методы публичные для тестов
+public:
     static Event getEvent(const std::string &str);
 
-public:
     static int getTime(const std::string &stringTime);
 
     static std::vector<Event> getEvents(std::ifstream &file);

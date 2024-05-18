@@ -5,18 +5,19 @@
 #ifndef YADROIMPULS_EVENTHANDLER_H
 #define YADROIMPULS_EVENTHANDLER_H
 
-#include <map>
-#include "Parser.h"
-#include <queue>
+#include "Event.h"
+
 struct Table {
-    int free{1};
     int income{0};
     int time{0};
     int lastTimeArrival{0};
+    bool free{true};
 
 };
+
 class EventHandler {
-    static void generateEvent(int time,int id,const std::string &error,const std::string &additional);
+    static void generateEvent(int time, int id, const std::string &error, const std::string &additional);
+    static int getDuration(int first,int second, int timeOpen, int timeClose);
 
 public:
     static void process(int N, int timeOpen, int timeClose, int costHour, const std::vector<Event> &events);

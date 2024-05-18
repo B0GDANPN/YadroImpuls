@@ -18,7 +18,8 @@ int main(int argc, char *argv[]) {
         file >> tmp;
         int timeClose = Parser::getTime(tmp);
         file >> tmp;
-        int costHour = Parser::getTime(tmp);
+        int costHour = Parser::getInt(tmp);
+        file.get(); //считываю символ переноса строки, чтоб дальше считывать только события;
         std::vector<Event> events = Parser::getEvents(file);
         int indexInvalid = Validator::validate(N, timeOpen, timeClose, costHour,
                                                events); //-1 данные удовлетворяют формату, иначе нет
@@ -30,7 +31,7 @@ int main(int argc, char *argv[]) {
                 case 1:
                     std::cout << std::to_string(timeOpen) << ' ' << std::to_string(timeClose) << std::endl;
                     break;
-                case 2:// если событий нету то будет выведено стоимость часа - последняя строка с данными
+                case 2:
                     std::cout << std::to_string(costHour) << std::endl;
                     break;
                 default:

@@ -1,19 +1,16 @@
-//
-// Created by bogdan on 14.05.24.
-//
-
 #ifndef YADROIMPULS_VALIDATOR_H
 #define YADROIMPULS_VALIDATOR_H
 
 #include "Event.h"
-#include <algorithm>
 
-class Validator {
-
-    static bool isValidName(const std::string &name);
+class Validator {// все методы публичные для тестов
 
 public:
     static int validate(int N, int timeOpen, int timeClose, int costHour, const std::vector<Event> &events);
+
+    static bool isValidTime(int first, int second, int timeOpen, int timeClose);
+
+    static bool isValidName(const std::string &name);
 };
 
 

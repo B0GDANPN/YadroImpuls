@@ -8,6 +8,7 @@
 #include <sstream>
 #include <vector>
 
+const int lastTime = 1439; // 23:59
 struct Event {
     int time;
     int id;
@@ -15,7 +16,7 @@ struct Event {
 
     static std::string timeToStr(int time_);
 
-    std::string toStr();
+    std::string toStr() const;
 };
 
 #endif //YADROIMPULS_EVENT_H
