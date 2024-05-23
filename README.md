@@ -14,7 +14,7 @@ make
 
 Для сборки и запуска тестов:
 
-В папке YadroImpuls:
+В папке YadroImpuls/tst:
 
 mkdir build
 
